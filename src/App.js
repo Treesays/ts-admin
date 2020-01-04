@@ -1,7 +1,18 @@
 import React from "react";
-import LC from  'leancloud-storage';
-function App() {
-    return <div className="App">foo</div>;
+import { FrontendAuth }  from './components/RouterComponents';
+import {
+    HashRouter,
+    Switch,
+} from "react-router-dom";
+import { routerConfig } from "./routers";
+export class App extends React.Component{
+  render(){
+      return(
+          <HashRouter>
+              <Switch>
+                  <FrontendAuth config={routerConfig} />
+              </Switch>
+          </HashRouter>
+      );
+  }
 }
-
-export default App;
