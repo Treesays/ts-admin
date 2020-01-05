@@ -8,7 +8,7 @@ export class App extends React.Component {
     render() {
         const currentUserName = AV.User.current()
             ? AV.User.current()["attributes"]["username"]
-            : '校长';
+            : null;
         return (
             <HashRouter>
                 <div className="flex flex-row full">

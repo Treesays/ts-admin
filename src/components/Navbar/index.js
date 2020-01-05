@@ -2,12 +2,13 @@ import React, { useState }  from "react";
 import { Menu, Icon } from 'antd';
 const logo = require("../../assets/rice.png");
 import useReactRouter from 'use-react-router';
-function getNameFromPath (path) {
-    return path === '/' ? 'posts': path.replace(/\//g, '');
-}
-
 function Navbar(props) {
-    const {history,location,match} = useReactRouter();
+    const { history,location } = useReactRouter();
+
+    function getNameFromPath (path) {
+        return path === '/' ? 'posts': path.replace(/\//g, '');
+    }
+
     return (
         <Menu style={{ width: 90 }} selectedKeys={getNameFromPath(location.pathname)} mode="vertical" theme="dark">
             <Menu.Item style={{ height: 48, textAlign: "center" }} >
