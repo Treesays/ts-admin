@@ -1,4 +1,45 @@
-body {
+body, ul {
     margin: 0;
     padding: 0;
+}
+ul {
+    list-style: none;
+}
+#root {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+.full {
+    flex: 1;
+}
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-row-space-around {
+    justify-content: space-around;
+}
+
+.flex-row-space-between {
+    justify-content: space-between;
+}
+.flex-row-end {
+    justify-content: flex-end;
+}
+.flex-row-align-center {
+    align-items: center;
+}
+.flex-column {
+    flex-direction: column;
+}
+
+.topbar {
+    height: 60px;
+    margin: 0 25px;
+
 }
