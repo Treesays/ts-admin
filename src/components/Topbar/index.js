@@ -1,6 +1,5 @@
 import React from "react";
 import { Menu, Icon } from 'antd';
-const logo = require("../../assets/treesays.png");
 function Topbar(props) {
     return (
         <Menu mode="horizontal" theme="dark" className="flex flex-row-end">

@@ -23,7 +23,6 @@ export class App extends React.Component {
                     </Switch>
                 </div>
                 </div>
-                {currentUserName && <footer>2019 Powered by Jack Li</footer>}
             </HashRouter>
         );
     }
