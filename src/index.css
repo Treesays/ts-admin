@@ -45,12 +45,20 @@ ul {
 }
 
 .login {
-    width: 500px;
-    height: 200px;
+    width: 300px;
+    text-align: center;
     margin: auto;
     position: absolute;
-    top: 0;
+    top: 33%;
     left: 0;
     right: 0;
     bottom: 0;
+}
+
+.login-cmp {
+    border-radius: 0;
+    margin-bottom: 18px;
+}
+.login-cmp input[type="password"] {
+    border-radius: 0;
 }
