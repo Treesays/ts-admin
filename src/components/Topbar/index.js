@@ -1,13 +1,25 @@
 import React from "react";
-import { Menu, Icon } from 'antd';
+import { Menu, message } from 'antd';
 function Topbar(props) {
+    async function tryLogOut() {
+        try {
+            const response = await AV.User.logOut();
+            console.log(response);
+            message.success('登出成功');
+            setTimeout(() => {history.go(0)}, 1000);
+        } catch (_) {
+            message.error('登出失败, 请检查网络');
+        }
+       
+
+    }
     return (
         <Menu mode="horizontal" theme="dark" className="flex flex-row-end">
             <Menu.Item>
             { props.username }
             </Menu.Item>
             <Menu.Item>
-                登 出
+                <span onClick={tryLogOut}>登 出</span>
             </Menu.Item>
         </Menu>
     );

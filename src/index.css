@@ -43,3 +43,22 @@ ul {
     margin: 0 25px;
 
 }
+
+.login {
+    width: 300px;
+    text-align: center;
+    margin: auto;
+    position: absolute;
+    top: 33%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.login-cmp {
+    border-radius: 0;
+    margin-bottom: 18px;
+}
+.login-cmp input[type="password"] {
+    border-radius: 0;
+}
