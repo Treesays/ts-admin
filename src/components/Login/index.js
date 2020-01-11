@@ -12,7 +12,7 @@ function Login() {
         try {
             const response = await AV.User.loginWithEmail(email, password);
             if (response.id !== null) {
-                messsage.success('登录成功');
+                message.success('登录成功');
               setTimeout(() => {history.go(0)}, 1000);
             }
           } catch(error) {

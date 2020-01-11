@@ -4,7 +4,6 @@ function Topbar(props) {
     async function tryLogOut() {
         try {
             const response = await AV.User.logOut();
-            console.log(response);
             message.success('登出成功');
             setTimeout(() => {history.go(0)}, 1000);
         } catch (_) {
