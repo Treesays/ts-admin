@@ -13,19 +13,19 @@ import "./index.css";
 const appId = "E0zOYOk1h0wBAkNHwFeaS63z-gzGzoHsz";
 const appKey = "fdFmkUavVqNrbP2PC6NRsRUj";
 const serverURLs = "https://e0zoyok1.lc-cn-n1-shared.com";
-const sagaMiddleware = createSagaMiddleware();
-const store = createStore(Reducers, applyMiddleware(sagaMiddleware));
-sagaMiddleware.run(usersSaga);
-sagaMiddleware.run(postsSaga);
-sagaMiddleware.run(commentsSaga);
+// const sagaMiddleware = createSagaMiddleware();
+// const store = createStore(Reducers, applyMiddleware(sagaMiddleware));
+// sagaMiddleware.run(usersSaga);
+// sagaMiddleware.run(postsSaga);
+// sagaMiddleware.run(commentsSaga);
 AV.init({
     appId,
     appKey,
     serverURLs
 });
 render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
+    // <Provider store={store}>
+        <App />,
+    // </Provider>,
     document.getElementById("root")
 );

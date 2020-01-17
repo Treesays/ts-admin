@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Menu, message } from 'antd';
+import { UserNameContext } from './userNameContext';
 function Topbar(props) {
     async function tryLogOut() {
         try {
@@ -15,7 +16,7 @@ function Topbar(props) {
     return (
         <Menu mode="horizontal" theme="dark" className="flex flex-row-end">
             <Menu.Item>
-            { props.username }
+            { useContext(UserNameContext) }
             </Menu.Item>
             <Menu.Item>
                 <span onClick={tryLogOut}>登 出</span>
