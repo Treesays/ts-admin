@@ -1,11 +1,11 @@
-import React from "react";
+import React, { createContext } from "react";
 import { FrontendAuth } from "./components/RouterComponents";
 import Navbar from "./components/Navbar";
 import Topbar from "./components/Topbar";
 import { HashRouter, Switch } from "react-router-dom";
 import { routerConfig } from "./routers";
-export class App extends React.Component {
-    render() {
+import { UserName } from './components/Topbar/userNameContext';
+export function App (){
         const currentUserName = AV.User.current()
             ? AV.User.current()["attributes"]["username"]
             : null;
@@ -14,7 +14,10 @@ export class App extends React.Component {
                 <div className="flex flex-row full">
                 {currentUserName && <Navbar />}
                 <div className="flex flex-column full">
-                    {currentUserName && <Topbar username={currentUserName} />}
+                {currentUserName && <UserName username={currentUserName}>
+                        <Topbar />
+                    </UserName>}
+                    
                     <Switch>
                         <FrontendAuth
                             config={routerConfig}
@@ -25,5 +28,4 @@ export class App extends React.Component {
                 </div>
             </HashRouter>
         );
-    }
 }

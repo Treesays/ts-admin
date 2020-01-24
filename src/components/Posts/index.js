@@ -1,40 +1,23 @@
-import React from "react";
-import { connect } from "react-redux";
-import { NEED_FETCH_POSTS } from "../../services/actions";
-const PostsCmp = class extends React.Component {
-    componentDidMount() {
-        this.props.fetchPosts();
-    }
-    render() {
-        return (
-            <div>
-                <div>posts</div>
-                <button onClick={this.props.fetchPosts.bind(this)}>
-                    click
-                </button>
-                {this.props.posts &&
-                    this.props.posts.map(post => (
-                        <div key={post.id}>{post._serverData.content}</div>
-                    ))}
-            </div>
-        );
-    }
-};
-
-const mapStateToProps = state => {
-    return {
-        posts: state.postsReducer.posts
-    };
-};
-
-const mapDispatchToProps = dispatch => {
-    return {
-        fetchPosts: () => {
-            dispatch(NEED_FETCH_POSTS);
-        }
-    };
-};
-
-const Posts = connect(mapStateToProps, mapDispatchToProps)(PostsCmp);
+import React, { useEffect, useReducer } from "react";
+import postsReducer from "../../services/reducers/posts";
+import fetchFromLeanCloud from "../../services/helpers";
+function Posts() {
+    const [{ posts }, dispatch] = useReducer(postsReducer, { posts: [] });
+    useEffect(() => {
+        fetchFromLeanCloud(dispatch, "Posts");
+    }, []);
+    return (
+        <div>
+            <div>posts</div>
+            <button onClick={() => fetchFromLeanCloud(dispatch, "Posts")}>
+                click
+            </button>
+            {posts &&
+                posts.map(post => (
+                    <div key={post.id}>{post._serverData.content}</div>
+                ))}
+        </div>
+    );
+}
 
 export default Posts;
