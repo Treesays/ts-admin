@@ -62,3 +62,10 @@ ul {
 .login-cmp input[type="password"] {
     border-radius: 0;
 }
+.ts-table, .ts-breadcrumb {
+    padding: 12px;
+}
+.ts-breadcrumb {
+    margin-left: 10px;
+    padding-bottom: 0;
+}
