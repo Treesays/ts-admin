@@ -6,6 +6,6 @@ export const routerConfig =  [
     { path: "/login", name: "Login", component: Login },
     { path: "/", name: "App", component: Posts, auth: true },
     { path: "/comments", name: "Comments", component: Comments, auth: true },
-    // { path: "/posts", name: "Posts", component: Posts, auth: true },
-    // { path: "/users", name: "Users", component: Users, auth: true }
+    { path: "/posts", name: "Posts", component: Posts, auth: true },
+    { path: "/users", name: "Users", component: Users, auth: true }
 ];

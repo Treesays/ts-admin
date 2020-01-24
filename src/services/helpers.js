@@ -5,18 +5,29 @@ const categoryMapping = {
     GeekLove: "5deb3566fbf47f006742ad28"
 };
 
-const fetchFromLeanCloud = (dispatch = null, table, pageNum = 0, pageSize = 7) => {
+const fetchFromLeanCloud = (
+    dispatch = null,
+    table,
+    pageNum = 0,
+    pageSize = 7
+) => {
     const skipHowManyPage = pageNum * pageSize;
-    const query = new AV.Query(table);
+    const _table = table === "Users" ? "_User" : table;
+    const query = new AV.Query(_table);
     if (dispatch) {
-        return query.find(
-            query
-                .descending("createdAt")
-                .limit(pageSize)
-                .skip(skipHowManyPage)
-        ).then((data) => {
-           dispatch({type: `FETCH_${table.toUpperCase()}`, payload: data })
-        })
+        return query
+            .find(
+                query
+                    .descending("createdAt")
+                    .limit(pageSize)
+                    .skip(skipHowManyPage)
+            )
+            .then(data => {
+                dispatch({
+                    type: `FETCH_${table.toUpperCase()}`,
+                    payload: data
+                });
+            });
     } else {
         return query.find(
             query
@@ -25,7 +36,6 @@ const fetchFromLeanCloud = (dispatch = null, table, pageNum = 0, pageSize = 7) =
                 .skip(skipHowManyPage)
         );
     }
-    
 };
 
 export default fetchFromLeanCloud;
