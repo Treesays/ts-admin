@@ -124,6 +124,60 @@ export const UsersColumnConfig = [
     },
 ]
 
+export const CommentsColumnConfig = [
+    {
+        title: "id",
+        dataIndex: "id",
+        key: "id",
+        width: 220,
+    },
+    {
+        title: "昵称",
+        dataIndex: "attributes.nick",
+        key: "attributes.nick",
+        width: 160,
+    },
+    {
+        title: "邮箱",
+        dataIndex: "attributes.mail",
+        key: "attributes.mail",
+        width: 200,
+    },
+    {
+        title: "系统信息",
+        dataIndex: "attributes.ua",
+        key: "attributes.ua",
+    },
+    {
+        title: "内容",
+        dataIndex: "attributes.comment",
+        key: "attributes.comment",
+        ellipsis: true,
+    },
+]
+// Comments data structure
+// attributes:
+// nick: "周周"
+// mail: "chinajoy12@gmail.com"
+// ua: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:71.0) Gecko/20100101 Firefox/71.0"
+// insertedAt: Sat Dec 07 2019 10:20:41 GMT+0800 (中国标准时间) {}
+// link: ""
+// comment: "<p>这是第一条数据</p>↵"
+// url: "/"
+// __proto__: Object
+// _hashedJSON: {insertedAt: ""2019-12-07T02:20:41.150Z""}
+// _escapedAttributes: {}
+// cid: "c169"
+// changed: {}
+// _silent: {}
+// _pending: {}
+// _hasData: true
+// _previousAttributes: {}
+// id: "5deb0c7921b47e0068aa2cbb"
+// createdAt: Sat Dec 07 2019 10:20:41 GMT+0800 (中国标准时间) {}
+// updatedAt: Sat Dec 07 2019 10:20:41 GMT+0800 (中国标准时间) {}
+
+
 
 // Users data structure
 
