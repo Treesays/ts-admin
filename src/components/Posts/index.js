@@ -2,7 +2,7 @@ import React, { useEffect, useReducer } from "react";
 import postsReducer from "../../services/reducers/posts";
 import fetchFromLeanCloud from "../../services/helpers";
 import { Table, Breadcrumb } from "antd";
-import { PostColumnConfig } from "../../services/tables/columnConfig";
+import { PostsColumnConfig } from "../../services/tables/columnConfig";
 function Posts() {
     const [{ posts }, dispatch] = useReducer(postsReducer, { posts: [] });
     useEffect(() => {
@@ -19,12 +19,17 @@ function Posts() {
             <div className="ts-table">
                 {posts && (
                     <Table
-                        columns={PostColumnConfig}
+                        columns={PostsColumnConfig}
                         dataSource={posts}
                         rowKey="id"
+                        pagination={{
+                            total: posts.length,
+                            showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
+                            pageSize: 13,
+                            defaultCurrent: 1,
+                        }}
                     />
                 )}
-                {posts && posts.map((post)=>console.log(post))}
             </div>
         </div>
     );
