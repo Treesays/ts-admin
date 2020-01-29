@@ -54,6 +54,10 @@ function Posts() {
           })
           setColumnSettings(columnConfig);
     };
+    function onTableChange (pagination, filters, sorter, extra) {
+        const { currentDataSource } = extra;
+        dispatch({type: 'FETCH_POSTS', payload: currentDataSource});
+    }
     useEffect(() => {
         fetchFromLeanCloud(dispatch, "Posts");
     }, []);
@@ -69,6 +73,7 @@ function Posts() {
             <div className="ts-table">
                 {posts && (
                     <Table
+                        onChange={onTableChange}
                         columns={columnSettings}
                         dataSource={posts}
                         rowKey="id"
