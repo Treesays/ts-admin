@@ -8,10 +8,9 @@ const categoryMapping = {
 const fetchFromLeanCloud = (
     dispatch = null,
     table,
-    pageNum = 0,
-    pageSize = 7
+    
 ) => {
-    const skipHowManyPage = pageNum * pageSize;
+    
     const _table = table === "Users" ? "_User" : table;
     const query = new AV.Query(_table);
     if (dispatch) {
@@ -19,8 +18,6 @@ const fetchFromLeanCloud = (
             .find(
                 query
                     .descending("createdAt")
-                    .limit(pageSize)
-                    .skip(skipHowManyPage)
             )
             .then(data => {
                 dispatch({
@@ -32,8 +29,6 @@ const fetchFromLeanCloud = (
         return query.find(
             query
                 .descending("createdAt")
-                .limit(pageSize)
-                .skip(skipHowManyPage)
         );
     }
 };
