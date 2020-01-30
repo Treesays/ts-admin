@@ -36,7 +36,6 @@ export const PostsColumnConfig = [
         dataIndex: "attributes.category",
         key: "attributes.category",
         filters: [{text: "GeekTalk", value:"GeekTalk"}, {text: "GeekToBuy", value:"GeekToBuy"}, {text: "GeekCode", value:"GeekCode"}, {text: "GeekLove", value:"GeekLove"}],
-        onFilter: (value, record) => record.attributes.category.indexOf(value) === 0,
         width: 100,
     },
     {

@@ -5,32 +5,11 @@ const categoryMapping = {
     GeekLove: "5deb3566fbf47f006742ad28"
 };
 
-const fetchFromLeanCloud = (
-    dispatch = null,
-    table,
-    
-) => {
-    
+const fetchFromLeanCloud = table => {
     const _table = table === "Users" ? "_User" : table;
     const query = new AV.Query(_table);
-    if (dispatch) {
-        return query
-            .find(
-                query
-                    .descending("createdAt")
-            )
-            .then(data => {
-                dispatch({
-                    type: `FETCH_${table.toUpperCase()}`,
-                    payload: data
-                });
-            });
-    } else {
-        return query.find(
-            query
-                .descending("createdAt")
-        );
-    }
+
+    return query.find(query.descending("createdAt"));
 };
 
 export default fetchFromLeanCloud;
