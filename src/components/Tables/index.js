@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useReducer } from "react";
-import postsReducer from "../../services/reducers/posts";
+import usersReducer from "../../services/reducers/users";
 import fetchFromLeanCloud from "../../services/helpers";
 import { Table, Breadcrumb, Checkbox } from "antd";
-import { PostsColumnConfig } from "../../services/tables/columnConfig";
+import { UsersColumnConfig } from "../../services/tables/columnConfig";
 const CheckboxGroup = Checkbox.Group;
-const fixedColumnSets = PostsColumnConfig.filter(
+const fixedColumnSets = UsersColumnConfig.filter(
     columnSetting => columnSetting.key === "attributes.username"
 );
-const selectableColumnSets = PostsColumnConfig.filter(
+const selectableColumnSets = UsersColumnConfig.filter(
     columnSetting => columnSetting.key !== "attributes.username"
 );
 const optionSets = [
@@ -16,24 +16,16 @@ const optionSets = [
         value: "id"
     },
     {
-        label: "类别",
-        value: "attributes.category"
+        label: "邮箱",
+        value: "attributes.email"
     },
     {
-        label: "内容",
-        value: "attributes.content"
+        label: "邮箱已验证",
+        value: "attributes.emailVerified"
     },
     {
-        label: "标签",
-        value: "attributes.tags"
-    },
-    {
-        label: "分享数",
-        value: "attributes.shareCount"
-    },
-    {
-        label: "点赞数",
-        value: "attributes.upCount"
+        label: "手机已验证",
+        value: "attributes.mobileVerified"
     },
     {
         label: "创建时间",
@@ -44,11 +36,11 @@ const optionSets = [
         value: "updatedAt"
     }
 ];
-function Posts(props) {
-    console.log(props);
-    const [{ posts }, dispatch] = useReducer(postsReducer, { posts: [] });
-    const [columnSettings, setColumnSettings] = useState(PostsColumnConfig);
-    const [postData, setPostData] = useState([]);
+
+function Tables(props) {
+    // TODO: get props from router cmp, refactor this later
+    const [columnSettings, setColumnSettings] = useState(UsersColumnConfig);
+    const [usersData, setUsersData] = useState([]);
     function onColumnSelectionChange(checkedValues) {
         let columnConfig = [...fixedColumnSets];
         selectableColumnSets.forEach(selectableColumn => {
@@ -60,20 +52,11 @@ function Posts(props) {
         });
         setColumnSettings(columnConfig);
     }
-    function onTableChange(pagination, filters, sorter, extra) {
-        let filteredPosts = posts.filter(post => {
-            return filters["attributes.category"].length
-                ? filters["attributes.category"].some(
-                      filterValue => filterValue === post.attributes.category
-                  )
-                : post;
-        });
-        setPostData(filteredPosts);
-    }
+    const [{ users }, dispatch] = useReducer(usersReducer, { users: [] });
     useEffect(() => {
-        fetchFromLeanCloud("Posts").then(_posts => {
-            dispatch({ type: "FETCH_POSTS", payload: _posts });
-            setPostData(_posts);
+        fetchFromLeanCloud("Users").then(_users => {
+            dispatch({ type: "FETCH_USERS", payload: _users });
+            setUsersData(_users);
         });
     }, []);
     return (
@@ -84,18 +67,16 @@ function Posts(props) {
                         <a>首 页</a>
                     </Breadcrumb.Item>
                     <Breadcrumb.Item>
-                        <a>帖子管理</a>
+                        <a>用户管理</a>
                     </Breadcrumb.Item>
                 </Breadcrumb>
                 <CheckboxGroup
                     options={optionSets}
                     defaultValue={[
                         "id",
-                        "attributes.category",
-                        "attributes.content",
-                        "attributes.tags",
-                        "attributes.shareCount",
-                        "attributes.upCount",
+                        "attributes.email",
+                        "attributes.emailVerified",
+                        "attributes.mobileVerified",
                         "createdAt",
                         "updatedAt"
                     ]}
@@ -103,14 +84,13 @@ function Posts(props) {
                 />
             </div>
             <div className="ts-table">
-                {postData && (
+                {usersData && (
                     <Table
-                        onChange={onTableChange}
                         columns={columnSettings}
-                        dataSource={postData}
+                        dataSource={usersData}
                         rowKey="id"
                         pagination={{
-                            total: postData.length,
+                            total: usersData.length,
                             showTotal: (total, range) =>
                                 `${range[0]}-${range[1]} of ${total} items`,
                             pageSize: 13,
@@ -123,4 +103,4 @@ function Posts(props) {
     );
 }
 
-export default Posts;
+export default Tables;

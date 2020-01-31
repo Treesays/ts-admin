@@ -1,6 +1,7 @@
 import Comments from "../components/Comments";
 import Posts from "../components/Posts";
 import Users from "../components/Users";
+import Tables from "../components/Tables";
 import Login from "../components/Login";
 export const routerConfig =  [
     { path: "/login", name: "Login", component: Login },
