@@ -38,7 +38,9 @@ const optionSets = [
 ];
 
 function Tables(props) {
-    // TODO: get props from router cmp, refactor this later
+    const tableName = props.name;
+    let reducerInit = {};
+    reducerInit[tableName] = [];
     const [columnSettings, setColumnSettings] = useState(UsersColumnConfig);
     const [usersData, setUsersData] = useState([]);
     function onColumnSelectionChange(checkedValues) {
@@ -52,7 +54,7 @@ function Tables(props) {
         });
         setColumnSettings(columnConfig);
     }
-    const [{ users }, dispatch] = useReducer(usersReducer, { users: [] });
+    const [state, dispatch] = useReducer(usersReducer, reducerInit);
     useEffect(() => {
         fetchFromLeanCloud("Users").then(_users => {
             dispatch({ type: "FETCH_USERS", payload: _users });
